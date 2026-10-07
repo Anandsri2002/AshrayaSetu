@@ -1,0 +1,6 @@
+import React from "react";
+import { HeartHandshake, ShieldCheck, Users } from "lucide-react";
+
+export default function About() {
+  return <section className="section"><div className="container-app max-w-5xl"><div className="max-w-3xl"><span className="eyebrow">About AashraySetu</span><h1 className="section-title">Technology that brings kindness closer to people.</h1><p className="section-copy">AashraySetu is a prototype concept for an NGO platform where financial-assistance requests can be presented clearly and donors can discover causes they care about.</p></div><div className="mt-12 grid gap-5 md:grid-cols-3">{[[HeartHandshake,"Human-first","Keep dignity and clear storytelling at the centre."],[ShieldCheck,"Trust-first","Make status, review and payment concepts visible."],[Users,"Community-first","Create a bridge between people who need support and people who can help."]].map(([Icon,t,p])=><div className="card p-7" key={t}><Icon className="text-brand-700"/><h3 className="mt-5 text-xl font-extrabold">{t}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{p}</p></div>)}</div></div></section>;
+}

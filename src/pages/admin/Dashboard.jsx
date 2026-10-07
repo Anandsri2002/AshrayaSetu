@@ -1,0 +1,14 @@
+import React from "react";
+import { BarChart3, Users, HandHeart, FileCheck2, IndianRupee } from "lucide-react";
+import { donations } from "../../data/donations";
+import { requests } from "../../data/requests";
+
+export default function Dashboard() {
+  const stats = [
+    [IndianRupee, "Total donations", "₹12,84,500"],
+    [Users, "Total donors", "4,820"],
+    [FileCheck2, "Active requests", "84"],
+    [HandHeart, "Families helped", "736"]
+  ];
+  return <section className="section"><div className="container-app"><div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><span className="eyebrow">Admin prototype</span><h1 className="section-title">Impact dashboard</h1></div><span className="badge">Demo data</span></div><div className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{stats.map(([Icon,t,v])=><div className="card p-6" key={t}><Icon className="text-brand-700"/><div className="mt-5 text-xs font-bold uppercase tracking-wider text-slate-500">{t}</div><div className="mt-1 text-3xl font-black">{v}</div></div>)}</div><div className="mt-7 grid gap-7 lg:grid-cols-2"><div className="card p-7"><div className="flex items-center gap-2"><BarChart3 className="text-brand-700"/><h2 className="font-extrabold">Donation overview</h2></div><div className="mt-8 flex h-48 items-end gap-3">{[40,58,45,70,62,82,92].map((h,i)=><div key={i} className="flex-1 rounded-t-xl bg-brand-600/80" style={{height:`${h}%`}}/>)}</div><div className="mt-3 flex justify-between text-xs text-slate-400">{["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(x=><span key={x}>{x}</span>)}</div></div><div className="card p-7"><h2 className="font-extrabold">Recent requests</h2><div className="mt-5 divide-y divide-slate-100">{requests.slice(0,4).map(x=><div key={x.id} className="flex items-center justify-between py-4"><div><div className="font-bold">{x.title}</div><div className="text-xs text-slate-500">{x.id} · {x.category}</div></div><span className="badge">{x.urgency}</span></div>)}</div></div></div><div className="card mt-7 overflow-x-auto p-7"><h2 className="font-extrabold">Recent donations</h2><table className="mt-5 w-full min-w-[650px] text-left text-sm"><thead><tr className="border-b text-xs uppercase tracking-wider text-slate-400"><th className="pb-3">Donation</th><th className="pb-3">Donor</th><th className="pb-3">Amount</th><th className="pb-3">Status</th></tr></thead><tbody>{donations.map(d=><tr key={d.id} className="border-b last:border-0"><td className="py-4 font-bold">{d.id}</td><td>{d.donor}</td><td>₹{d.amount.toLocaleString("en-IN")}</td><td><span className="text-brand-700 font-bold">{d.status}</span></td></tr>)}</tbody></table></div></div></section>;
+}
